@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/UUAiY6GZ)
 # Template de App Android com Jetpack Compose
 
 Este repositório serve como um template para projetos Android. Ele utiliza a SDK 35, Material Design 3 e Jetpack Compose, oferecendo uma base sólida para o desenvolvimento de aplicativos modernos.
