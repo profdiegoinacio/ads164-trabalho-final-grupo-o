@@ -1,4 +1,4 @@
-package com.example.myapp
+package br.com.listme
 
 import org.junit.Test
 
