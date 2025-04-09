@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "113041575948",
+    "project_id": "list-me-dedfe",
+    "storage_bucket": "list-me-dedfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113041575948:android:6f71df33bf0f6c98195e29",
+        "android_client_info": {
+          "package_name": "br.com.listme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu48LLwy7gNS5jKkyO_lqdkn9dke7RG1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
