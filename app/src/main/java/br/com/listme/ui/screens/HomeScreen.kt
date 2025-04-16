@@ -1,10 +1,16 @@
 package br.com.listme.ui.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -30,8 +36,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
+import br.com.listme.R
 import br.com.listme.data.model.List
 import br.com.listme.viewmodel.ItemViewModel
 
@@ -64,13 +73,37 @@ fun HomeScreen(itemViewModel: ItemViewModel, navController: NavHostController) {
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("List") },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary
-                ),
-            )
+            Column (
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Box {
+                    TopAppBar(
+                        title = { Text("List Me! App") },
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            titleContentColor = MaterialTheme.colorScheme.onPrimary
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp)
+                            .zIndex(0f)
+                    )
+
+                    Image(
+                        painter = painterResource(R.drawable.logolions),
+                        contentDescription = "pic",
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd) // Or Alignment.TopCenter / TopStart etc.
+                            .zIndex(10f)
+                            .padding(30.dp, 0.dp)
+                            .width(80.dp)
+                            .height(80.dp)
+                    )
+                }
+
+
+            }
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -84,51 +117,58 @@ fun HomeScreen(itemViewModel: ItemViewModel, navController: NavHostController) {
         },
         floatingActionButtonPosition = FabPosition.End,
         content = { innerPadding ->
-            if (tasks.isEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("No items. All done! Congratulations.")
-                }
-            } else {
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .padding(16.dp)
-                ) {
-                    items(tasks) { task ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = task.name,
-                                modifier = Modifier.weight(1f),
-                                style = MaterialTheme.typography.bodyLarge
-                            )
-                            Text(
-                                text = task.createdAt,
-                                modifier = Modifier.weight(1f),
-                                style = MaterialTheme.typography.bodyLarge
-                            )
-                            IconButton(onClick = {
-                                listToDelete = task
-                                showDialog = true
-                            }) {
-                                Icon(
-                                    Icons.Default.Delete,
-                                    contentDescription = "Delete"
+            Column (
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(130.dp))
+                Image(painter = painterResource(id = R.drawable.logohospital), contentDescription = "pic")
+                if (tasks.isEmpty()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text("No items. All done! Congratulations.")
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(20.dp)
+                    ) {
+                        items(tasks) { task ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = task.name,
+                                    modifier = Modifier.weight(1f),
+                                    style = MaterialTheme.typography.bodyLarge
                                 )
+                                Text(
+                                    text = task.createdAt,
+                                    modifier = Modifier.weight(1f),
+                                    style = MaterialTheme.typography.bodyLarge
+                                )
+                                IconButton(onClick = {
+                                    listToDelete = task
+                                    showDialog = true
+                                }) {
+                                    Icon(
+                                        Icons.Default.Delete,
+                                        contentDescription = "Delete"
+                                    )
+                                }
                             }
                         }
                     }
                 }
             }
+
         }
     )
 }
